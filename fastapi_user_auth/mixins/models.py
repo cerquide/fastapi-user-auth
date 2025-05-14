@@ -12,8 +12,9 @@ from fastapi_user_auth.utils.sqltypes import SecretStrType
 
 class PkMixin(SQLModel):
     id: Optional[int] = Field(
-        default=None, title="ID", primary_key=True, nullable=False, sa_column_kwargs={"autoincrement": True}
-    )
+        default=None, title="ID",
+        primary_key=True,
+        sa_column_kwargs={"server_default": Identity()})
 
 
 class CreateTimeMixin(SQLModel):
