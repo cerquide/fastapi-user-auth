@@ -146,9 +146,12 @@ class Adapter(AsyncAdapter, AsyncUpdateAdapter):
         """adds a policy rules to the storage."""
         values = []
         for rule in rules:
-            values.append(self.parse_rule(ptype, rule).dict())
-            if ("id" in values) and values["id"] is None:
-                del values["id"]
+            rule_values = self.parse_rule(ptype, rule).dict()
+            print(rule_values)
+            if ("id" in rule_values) and rule_values["id"] is None:
+                del rule_values["id"]
+            values.append(rule_values)
+            
         if not values:
             return
         await self.db.async_execute(insert(self._db_class).values(values))
