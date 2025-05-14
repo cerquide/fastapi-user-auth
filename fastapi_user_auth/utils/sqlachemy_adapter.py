@@ -147,6 +147,8 @@ class Adapter(AsyncAdapter, AsyncUpdateAdapter):
         values = []
         for rule in rules:
             values.append(self.parse_rule(ptype, rule).dict())
+            if ("id" in values) and values["id"] is None:
+                del values["id"]
         if not values:
             return
         await self.db.async_execute(insert(self._db_class).values(values))
