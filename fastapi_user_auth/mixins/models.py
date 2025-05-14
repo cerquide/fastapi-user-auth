@@ -4,7 +4,7 @@ from typing import Optional
 from fastapi_amis_admin.models import Field, SQLModel
 from fastapi_amis_admin.utils.translation import i18n as _
 from pydantic import EmailStr, SecretStr
-from sqlalchemy import func
+from sqlalchemy import func, Identity
 from sqlmodel import AutoString
 
 from fastapi_user_auth.utils.sqltypes import SecretStrType
