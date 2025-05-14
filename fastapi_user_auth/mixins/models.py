@@ -4,7 +4,7 @@ from typing import Optional
 from fastapi_amis_admin.models import Field, SQLModel
 from fastapi_amis_admin.utils.translation import i18n as _
 from pydantic import EmailStr, SecretStr
-from sqlalchemy import func, Identity
+from sqlalchemy import func
 from sqlmodel import AutoString
 
 from fastapi_user_auth.utils.sqltypes import SecretStrType
@@ -13,8 +13,7 @@ from fastapi_user_auth.utils.sqltypes import SecretStrType
 class PkMixin(SQLModel):
     id: Optional[int] = Field(
         default=None, title="ID",
-        primary_key=True,
-        sa_column_kwargs={"server_default": Identity()})
+        primary_key=True)
 
 
 class CreateTimeMixin(SQLModel):
